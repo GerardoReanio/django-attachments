@@ -35,14 +35,12 @@ class Attachment(models.Model):
     modified = models.DateTimeField(_('modified'), auto_now=True)
 
     class Meta:
-        app_label = ugettext("attachment")
+        
         ordering = ['-created']
         permissions = (
             ('delete_foreign_attachments', 'Can delete foreign attachments'),
         )
-        # Not to create a new table
-        db_table = "attachments_attachment"
-
+        
     def __unicode__(self):
         return '%s attached %s' % (self.creator.get_username(), self.attachment_file.name)
 
